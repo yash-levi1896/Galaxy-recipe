@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavbarPage></NavbarPage>
     <div v-for="(item, index) in items" :key="index" class="item">
       <img :src="item.image_url" alt="Item Image" class="item-image" />
       <h3 class="item-title">{{ item.title }}</h3>
@@ -11,6 +12,7 @@
 
 <script>
 import axios from 'axios'
+import NavbarPage from './NavbarPage.vue'
 export default {
     name:'FavPage',
   data() {
@@ -89,7 +91,9 @@ export default {
       });
   },
     },
-    
+components: {
+     NavbarPage,
+  },    
 };
 </script>
 

@@ -1,7 +1,7 @@
 // MenuPage.vue
 <template>
   <div>
-    <!-- <NavbarPage></NavbarPage> -->
+    <NavbarPage></NavbarPage>
     <h1 style="width:50%;margin:auto;margin-top:0px;margin-bottom:10px">Recipes</h1>
     <label for="dietPreference" style="margin-top:5px;margin-bottom:10px">Diet Preference:</label>
     <select v-model="selectedDiet" id="dietPreference" @change="fetchRecipes">
@@ -23,7 +23,7 @@
 <script>
 import axios from "axios";
 import DishItem from "./DishItem.vue";
-//import NavbarPage from './NavbarPage.vue'
+import NavbarPage from './NavbarPage.vue'
 
 export default {
   data() {
@@ -72,7 +72,7 @@ export default {
   },
   components: {
     DishItem,
-    // NavbarPage,
+     NavbarPage,
   },
    watch: {
     selectedDiet: 'fetchRecipes',

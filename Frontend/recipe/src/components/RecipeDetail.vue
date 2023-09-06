@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavbarPage></NavbarPage>
   <div class="recipe-detail" v-if="recipe">
     <div class="image-container">
       <img :src="recipe.image_url" :alt="recipe.title" class="recipe-image" />
@@ -60,7 +61,7 @@
 
 <script>
 import axios from "axios";
-//import NavbarPage from './NavbarPage.vue'
+import NavbarPage from './NavbarPage.vue'
 
 export default {
   props: {
@@ -184,9 +185,9 @@ export default {
     },
   
   },
-  // components:{
-  //   NavbarPage
-  // },
+  components:{
+    NavbarPage
+  },
 };
 </script>
 

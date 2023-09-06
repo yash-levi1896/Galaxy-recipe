@@ -1,6 +1,6 @@
 <template>
     <div class="homepage">
-          <!-- <NavbarPage></NavbarPage> -->
+          <NavbarPage></NavbarPage>
         <div id="banner">
         <img src="https://www.allrecipes.com/thmb/9_tyQgwqi42SqdZ2P2Fchx5tslI=/2000x666/filters:no_upscale():max_bytes(150000):strip_icc():focal(1253x628:1255x630):format(webp)/4540995_BentoBoxTurkeyRoll-UpswithCapreseSalad3x1v2-508e92fbf40a4945991d04a862beb069.jpg" alt="">
         </div>
@@ -139,11 +139,11 @@
 </template>
 
 <script>
-//import NavbarPage from './NavbarPage.vue'
+import NavbarPage from './NavbarPage.vue'
 
 export default {
    components: {
-    //NavbarPage,
+    NavbarPage,
   },
 }
 </script>

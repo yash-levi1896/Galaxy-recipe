@@ -1,19 +1,19 @@
 <template>
   <div>
-    <NavbarPage></NavbarPage>
+    <!-- <NavbarPage></NavbarPage> -->
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 
-  import NavbarPage from './components/NavbarPage.vue'
+//  import NavbarPage from './components/NavbarPage.vue'
 
 export default {
   name: 'App',
-  components: {
-    NavbarPage
-  }
+  // components: {
+  //   NavbarPage
+  // }
 }
 </script>
 
