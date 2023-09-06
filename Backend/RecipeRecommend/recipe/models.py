@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 # Create your models here.
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    dietary_preferences = models.CharField(blank=True, max_length=100)
-    recipeCollections=models.JSONField(default=list, blank=True)
+    shoping_list = models.JSONField(default=list)
+    recipeCollections=models.JSONField(default=list)
     # Add other fields as needed
 
     # Define a method to get personalized recipe collections
@@ -28,3 +29,12 @@ class Recipe(models.Model):
 
       def __str__(self):
         return self.title
+      
+class Rating(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='ratings')
+    recipe = models.ForeignKey('Recipe', on_delete=models.CASCADE, related_name='ratings')
+    rating = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(5)])
+    review = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"Rating for {self.recipe} by {self.user}"

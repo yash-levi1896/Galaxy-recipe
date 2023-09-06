@@ -4,7 +4,7 @@
   <router-link :to="{ name: 'recipeDetails', params: { recipe_id: recipe.id } }">
     <div class="dish">
       <img :src="recipe.image_url" :alt="recipe.title" />
-      <h3>{{ recipe.title }}</h3>
+      <h3 id="tit">{{ recipe.title }}</h3>
     </div>
   </router-link>
 </template>
@@ -34,9 +34,11 @@ export default {
 .dish h3 {
   font-size: 18px;
   margin-top: 10px;
+  
+}
+#tit{
   text-decoration: none;
 }
-
 /* Hover effect */
 .dish:hover {
   transform: scale(1.05);

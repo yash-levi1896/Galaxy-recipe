@@ -1,16 +1,19 @@
 <template>
-  <router-view></router-view>
+  <div>
+    <NavbarPage></NavbarPage>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
 
-// import DishMenu from './components/DishMenu.vue'
+  import NavbarPage from './components/NavbarPage.vue'
 
 export default {
   name: 'App',
-  // components: {
-  //   DishMenu
-  // }
+  components: {
+    NavbarPage
+  }
 }
 </script>
 

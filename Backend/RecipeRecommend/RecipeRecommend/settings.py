@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -51,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    # 'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # 'recipe.middlware.TokenAuthMiddleware',
     
 ]
 
@@ -74,6 +81,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'RecipeRecommend.wsgi.application'
 
+# from dotenv import load_dotenv
+# import os
+
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -83,7 +93,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': "'recipe'",
         'CLIENT':{
-            'host':"mongodb+srv://yash:yashkumargupta@cluster0.enr2bh5.mongodb.net/recipe?retryWrites=true&w=majority"
+            'host':os.environ.get('MongoURL')
         }
     }
 }
