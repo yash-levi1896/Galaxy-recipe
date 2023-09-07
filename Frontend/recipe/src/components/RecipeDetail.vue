@@ -38,7 +38,15 @@
       </div>
     </div>
 
-    <h2 style="margin-top:40px;">Reviews</h2>
+    <h2 style="margin-top:40px;text-align:left;margin-left:360px;">Reviews</h2>
+    <div v-if="isLoading">
+      <h3>Loading...</h3>
+    </div>
+    <div v-else>
+      <div v-if="reviews.length === 0">
+      <h3>No reviews yet.Be the first one to review by logining in </h3>
+      </div>
+    <div v-else>
     <div class="review-cards">
       <!-- Loop through reviews and render each as a card -->
       <div v-for="(review, index) in reviews" :key="index" class="review-card">
@@ -55,6 +63,8 @@
           <p class="user-review">{{ review.review }}</p>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   </div>
 </template>
@@ -74,6 +84,7 @@ export default {
       userRating: 0, // Add this property to store the user's rating
       userReview: '', // Add this property to store the user's review
       reviews: [],
+      isLoading:true
     };
   },
    computed: {
@@ -83,7 +94,7 @@ export default {
       return !!authToken; // Convert to boolean
     },
   },
-  created() {
+  mounted() {
     // Fetch the recipe data
     axios.get(`http://localhost:8000/recipe/api/recipe-detail/${this.$route.params.recipe_id}/`)
       .then((response) => {
@@ -176,11 +187,12 @@ export default {
         .then((response) => {
           // Assign the response data to the reviews array
           this.reviews = response.data.msg;
-          console.log(response)
+          this.isLoading=false
         })
         .catch((error) => {
+          this.isLoading=false
           console.error("Error fetching reviews:", error);
-          console.log(error.response)
+          
         });
     },
   
@@ -403,10 +415,13 @@ button.cancel-button:hover {
   font-weight: bold;
   color: #007bff; /* Adjust the color based on your design */
   margin-bottom: 5px;
+  text-align: left;
 }
 
-.user-review {
-  margin-bottom: 0; /* Remove extra margin at the bottom of the review */
+.user-review{
+  text-align: left;
+  flex-grow: 1;
 }
+
 
 </style>

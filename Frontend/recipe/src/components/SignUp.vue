@@ -8,7 +8,7 @@
           <input type="text" id="username" v-model="data.username" required />
         </div>
         <div>
-          <label for="email">Email:</label>
+          <label for="email" id="em">Email:</label>
           <input type="email" id="email" v-model="data.email" required />
         </div>
         <div>
@@ -16,6 +16,8 @@
           <input type="password" id="password" v-model="data.password" required />
         </div>
         <button type="submit">Signup</button>
+        <p>Already registered <router-link to="/login" style="text-decoration:none;color:#3498db">Login</router-link></p>
+        <router-link to="/" style="text-decoration:none;color:#3498db">Home Page</router-link>
       </form>
     </div>
   </div>
@@ -75,6 +77,10 @@ form {
 /* Label styles */
 label {
   margin-bottom: 5px;
+}
+
+#em{
+  margin-right: 30px;
 }
 
 /* Input field styles */

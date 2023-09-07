@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'recipe',
     'rest_framework',
     'rest_framework.authtoken',
+    'drf_yasg2',
 ]
 
 MIDDLEWARE = [
@@ -158,3 +159,5 @@ CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',  
 ]
+
+SWAGGER_SETTINGS = { "DEFAULT_GENERATOR_CLASS": "rest_framework.schemas.generators.BaseSchemaGenerator", }

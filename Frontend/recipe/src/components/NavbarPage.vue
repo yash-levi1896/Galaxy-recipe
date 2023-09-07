@@ -9,12 +9,12 @@
     </ul>
     <div class="auth-section">
       <span v-if="!isUserLoggedIn">
-      <router-link to="/login">Login</router-link>
-      <router-link to="/register">Signup</router-link>
+      <router-link to="/login" style="text-decoration:none;color:white">Login</router-link>
+      <router-link to="/register" style="text-decoration:none;color:white;margin-left:10px;">Signup</router-link>
       </span>
-       <span v-else> <!-- User is logged in -->
-        {{ username }} <!-- Render the username from local storage -->
-        <p @click="logout">Logout</p> <!-- Add a logout link -->
+       <span v-else> 
+       <span>{{ username }}</span> 
+        <span @click="logout" style="margin-left:10px;cursor:pointer;">Logout</span>
       </span>
     </div>
   </nav>
@@ -37,6 +37,7 @@ export default {
   methods:{
     logout(){
        localStorage.clear();
+       alert('Logout sucessful !')
         this.$router.push("/");
     }
   },
@@ -51,8 +52,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  margin-top: 0px;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
 }
 body{
   margin: 0px;

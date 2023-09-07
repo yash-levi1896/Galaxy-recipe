@@ -19,7 +19,7 @@ load_dotenv()
 
 openai.api_key = os.environ.get('OPENAI_API_KEY')
 
-# Create your views here.
+# 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
 
 @api_view(['POST'])
 @permission_classes([AllowAny])

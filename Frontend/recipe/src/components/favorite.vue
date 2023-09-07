@@ -1,11 +1,22 @@
 <template>
   <div>
     <NavbarPage></NavbarPage>
+    <h1 style="margin-bottom:10px;">Favorites List</h1>
+    <div v-if="isLoading">
+      <h3>Loading...</h3> <!-- Show loader while loading -->
+    </div>
+    <div v-else>
+      <div v-if="items.length === 0">
+      <h3>Favorite is empty, please add.</h3>
+      </div>
+    <div v-else class="favorite-list">
     <div v-for="(item, index) in items" :key="index" class="item">
       <img :src="item.image_url" alt="Item Image" class="item-image" />
       <h3 class="item-title">{{ item.title }}</h3>
       <button @click="addToMealPlanner(index)" class="action-button">Add to Meal Planner</button>
       <button @click="deleteItem(index)" class="action-button">Delete</button>
+    </div>
+    </div>
     </div>
   </div>
 </template>
@@ -18,6 +29,7 @@ export default {
   data() {
     return {
       items: [], // Array to store data from the API
+       isLoading: true, // Add loading state
     };
   },
   mounted() {
@@ -41,8 +53,10 @@ export default {
         .then((response) => {
             console.log(response.data.msg)
           this.items = response.data.msg; // Assuming the API response is an array of items
+          this.isLoading= false // Add loading state
         })
         .catch((error) => {
+          this.isLoading= false
           console.error('Error fetching data:', error);
         });
     },
@@ -98,11 +112,17 @@ components: {
 </script>
 
 <style scoped>
+.favorite-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Create a grid with a minimum item width of 200px */
+  grid-gap: 20px; /* Add some spacing between grid items */
+  margin-left: 30px;
+}
+
 .item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;

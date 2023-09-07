@@ -1,8 +1,18 @@
 // ShoppingList.vue
 
 <template>
+  <div>
+    <NavbarPage></NavbarPage>
   <div class="shopping-list">
     <h2>Shopping List</h2>
+    <div v-if="isLoading">
+      <h3>Loading...</h3>
+    </div>
+    <div v-else>
+      <div v-if="ingredients.length===0">
+        <h3>shopping List is empty</h3>
+      </div>
+      <div v-else>
     <div v-for="(item, index) in ingredients" :key="index">
       <h3>Item {{ index + 1 }}</h3>
       <ul>
@@ -10,17 +20,23 @@
           {{ ingredient }}
         </li>
       </ul>
-      <button @click="deleteIngredient(index)">Delete</button>
+      <!-- <button @click="deleteIngredient(index)">Delete</button> -->
+      </div>
     </div>
+    </div>
+  </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import NavbarPage from './NavbarPage.vue'
+
 export default {
   data() {
     return {
       ingredients: [],
+      isLoading:true
     };
   },
   methods: {
@@ -60,8 +76,10 @@ export default {
 
         // Assuming your API returns ingredients as an array of objects
         this.ingredients = response.data.msg;
+        this.isLoading=false
         
       } catch (error) {
+        this.isLoading=false
         console.error("Error fetching ingredients:", error);
       }
     },
@@ -70,6 +88,9 @@ export default {
     // Fetch ingredients when the component is mounted
     this.fetchIngredients();
   },
+  components:{
+    NavbarPage
+  }
 };
 </script>
 

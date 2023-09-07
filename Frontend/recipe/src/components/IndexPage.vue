@@ -2,7 +2,7 @@
     <div class="homepage">
           <NavbarPage></NavbarPage>
         <div id="banner">
-        <img src="https://www.allrecipes.com/thmb/9_tyQgwqi42SqdZ2P2Fchx5tslI=/2000x666/filters:no_upscale():max_bytes(150000):strip_icc():focal(1253x628:1255x630):format(webp)/4540995_BentoBoxTurkeyRoll-UpswithCapreseSalad3x1v2-508e92fbf40a4945991d04a862beb069.jpg" alt="">
+        <img :src="currentImage" alt="">
         </div>
         <div class="divi2">
             <p>AI Powered Recipe and Ingredients from All over the world</p>
@@ -142,6 +142,44 @@
 import NavbarPage from './NavbarPage.vue'
 
 export default {
+
+  data() {
+    return {
+      images: [
+        "https://www.dineout.co.in/blog/wp-content/uploads/2020/09/Blog-banner-01.jpg",
+        "https://previews.123rf.com/images/unitonevector/unitonevector1909/unitonevector190900288/129490277-banner-is-written-natural-oatmeal-new-recipe-diet-food-no-soy-calcium-rich-lover-sodium-lactose.jpg",
+        "https://d3jmn01ri1fzgl.cloudfront.net/photoadking/webp_thumbnail/6066ff8eeffaa_template_image_1617362830.webp",
+        "https://d3jmn01ri1fzgl.cloudfront.net/photoadking/webp_thumbnail/6067021110aab_json_image_1617363473.webp",
+        
+      ],
+      currentImageIndex: 0,
+      intervalId: null,
+      intervalDuration: 3000, // 5 seconds
+    };
+  },
+  computed: {
+    currentImage() {
+         console.log(`Current Image Index: ${this.currentImageIndex}`);
+    console.log(`Current Image URL: ${this.images[this.currentImageIndex]}`);
+      return this.images[this.currentImageIndex];
+    },
+  },
+   created() {
+    // Delay the start of the image carousel to ensure the Vue instance is ready
+    setTimeout(this.startImageCarousel, 0);
+  },
+  onBeforeUnmount() {
+    // Clear the interval to prevent memory leaks
+    clearInterval(this.intervalId);
+  },
+  methods: {
+    startImageCarousel() {
+      this.intervalId = setInterval(() => {
+        // Increment the current image index, loop back to the first image if at the end
+        this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
+      }, this.intervalDuration);
+    },
+  },  
    components: {
     NavbarPage,
   },
@@ -154,6 +192,11 @@ export default {
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 10px;
+    height: 500px;
+}
+#banner{
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .divi2{

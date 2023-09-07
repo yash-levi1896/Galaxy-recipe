@@ -12,6 +12,8 @@
           <input type="password" id="password" v-model="formData.password" required />
         </div>
         <button type="submit">Login</button>
+        <p>If not registered<router-link to="/register" style="text-decoration:none;color:#3498db;margin-left:10px;">Signup</router-link></p>
+        <router-link to="/" style="text-decoration:none;color:#3498db;">Home Page</router-link>
       </form>
     </div>
   </div>
