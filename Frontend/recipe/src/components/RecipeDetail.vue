@@ -96,7 +96,7 @@ export default {
   },
   mounted() {
     // Fetch the recipe data
-    axios.get(`http://localhost:8000/recipe/api/recipe-detail/${this.$route.params.recipe_id}/`)
+    axios.get(`https://recipefinderone.onrender.com/recipe/api/recipe-detail/${this.$route.params.recipe_id}/`)
       .then((response) => {
         this.recipe = response.data;
         console.log(response)
@@ -115,7 +115,7 @@ export default {
       token?token:''
 
       axios
-        .post(`http://localhost:8000/recipe/api/add-favorite/${recipe_id}/`,null,{
+        .post(`https://recipefinderone.onrender.com/recipe/api/add-favorite/${recipe_id}/`,null,{
           headers: {
              Authorization: `Bearer ${token}`,
            },
@@ -147,7 +147,7 @@ export default {
       // Make a POST request to save the review
       if (reviewData.rating!=undefined && reviewData.review!=undefined){
           axios
-        .post(`http://localhost:8000/recipe/api/rating/${recipeID}/`, reviewData,{
+        .post(`https://recipefinderone.onrender.com/recipe/api/rating/${recipeID}/`, reviewData,{
           headers: {
              Authorization: `Bearer ${token}`,
            },
@@ -183,7 +183,7 @@ export default {
     fetchReviews() {
       // Make a GET request to fetch reviews
       axios
-        .get(`http://localhost:8000/recipe/api/get-rating/${this.$route.params.recipe_id}/`)
+        .get(`https://recipefinderone.onrender.com/recipe/api/get-rating/${this.$route.params.recipe_id}/`)
         .then((response) => {
           // Assign the response data to the reviews array
           this.reviews = response.data.msg;

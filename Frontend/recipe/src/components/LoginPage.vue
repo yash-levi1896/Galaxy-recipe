@@ -34,7 +34,7 @@ export default {
   methods: {
      async login() {
       try {
-        const response = await axios.post('http://localhost:8000/recipe/api/login/', this.formData);
+        const response = await axios.post('https://recipefinderone.onrender.com/recipe/api/login/', this.formData);
 
         // Check if login was successful (you can define your response structure)
         if (response.data.msg === 'Login succesfull') {

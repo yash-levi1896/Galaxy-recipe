@@ -33,7 +33,7 @@ export default {
     };
   },
   created() {
-    axios.get("http://127.0.0.1:8000/recipe/api/get-recipe/")
+    axios.get("https://recipefinderone.onrender.com/recipe/api/get-recipe/")
       .then((response) => {
         this.recipes = response.data;
         // console.log(response)
@@ -47,7 +47,7 @@ export default {
       // Check if 'All' option is selected
       if (this.selectedDiet === 'all') {
         // If 'All' is selected, make a GET request without diet preference filter
-        axios.get("http://127.0.0.1:8000/recipe/api/get-recipe/")
+        axios.get("https://recipefinderone.onrender.com/recipe/api/get-recipe/")
           .then((response) => {
             this.recipes = response.data;
           })
@@ -56,7 +56,7 @@ export default {
           });
       } else {
         // If a specific diet preference is selected, include it in the query
-        axios.get("http://127.0.0.1:8000/recipe/api/get-recipe/", {
+        axios.get("https://recipefinderone.onrender.com/recipe/api/get-recipe/", {
           params: {
             diet_preference: this.selectedDiet,
           },

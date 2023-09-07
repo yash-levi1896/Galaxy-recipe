@@ -41,7 +41,7 @@ export default {
     async signup() {
       // Handle form submission here
        try {
-        const response = await axios.post('http://localhost:8000/recipe/api/register/', this.data);
+        const response = await axios.post('https://recipefinderone.onrender.com0/recipe/api/register/', this.data);
         // Handle successful signup (e.g., show a success message, redirect the user)
             alert(response.data.msg)
         

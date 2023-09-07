@@ -57,7 +57,7 @@ export default {
 
       // Make an Axios POST request to your backend
       // Replace 'your-backend-api-url' with the actual API endpoint
-      axios.post('http://localhost:8000/recipe/api/recipe-recommend/', requestData)
+      axios.post('https://recipefinderone.onrender.com/recipe/api/recipe-recommend/', requestData)
         .then((response) => {
           // Handle the response and set the recommended recipe
         //    console.log(response.data.msg)

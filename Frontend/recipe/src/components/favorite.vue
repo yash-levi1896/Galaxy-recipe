@@ -45,7 +45,7 @@ export default {
       token?token:''
 
       axios
-        .get('http://localhost:8000/recipe/api/get-favorite/',{
+        .get('https://recipefinderone.onrender.com/recipe/api/get-favorite/',{
             headers: {
              Authorization: `Bearer ${token}`,
            },
@@ -66,7 +66,7 @@ export default {
         token?token:''
 
         axios
-        .post(`http://localhost:8000/recipe/api/add-shoping/${itemToAdd.id}/`,null,{
+        .post(`https://recipefinderone.onrender.com/recipe/api/add-shoping/${itemToAdd.id}/`,null,{
             headers: {
              Authorization: `Bearer ${token}`,
            },
@@ -87,7 +87,7 @@ export default {
       token?token:''
     // Make an HTTP DELETE request to your API
     axios
-      .delete(`http://localhost:8000/recipe/api/del-favorite/${itemToDelete.id}/`,{
+      .delete(`https://recipefinderone.onrender.com/recipe/api/del-favorite/${itemToDelete.id}/`,{
         headers: {
              Authorization: `Bearer ${token}`,
            },
