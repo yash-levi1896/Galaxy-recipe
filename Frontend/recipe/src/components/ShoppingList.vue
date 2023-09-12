@@ -50,7 +50,7 @@ export default {
 
       // Make an Axios DELETE request to remove the item
       axios
-        .delete(`http://127.0.0.1:8000/recipe/api/del-shoping/${itemToRemove.id}/`, {
+        .delete(`https://recipefinderone.onrender.com/recipe/api/del-shoping/${itemToRemove.id}/`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -71,7 +71,7 @@ export default {
         let token=localStorage.getItem('token')
         token?token:''
       try {
-        const response = await axios.get("http://127.0.0.1:8000/recipe/api/get-shoping/",{
+        const response = await axios.get("https://recipefinderone.onrender.com/recipe/api/get-shoping/",{
             headers: {
              Authorization: `Bearer ${token}`,
            },
@@ -92,7 +92,7 @@ export default {
       print(encodedIngredientName)
       try {
         // Send a PATCH request to update the checked status of the ingredient
-        await axios.patch(`http://127.0.0.1:8000/recipe/api/update-shoping/${item.id}/${encodedIngredientName}`,null,{
+        await axios.patch(`https://recipefinderone.onrender.com/recipe/api/update-shoping/${item.id}/${encodedIngredientName}`,null,{
           headers: {
              Authorization: `Bearer ${token}`,
            },
