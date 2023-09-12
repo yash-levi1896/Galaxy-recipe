@@ -13,14 +13,17 @@
         <h3>shopping List is empty</h3>
       </div>
       <div v-else>
-    <div v-for="(item, index) in ingredients" :key="index">
+    <div v-for="(item, index) in ingredients" :key="item.id">
       <h3>Item {{ index + 1 }}</h3>
       <ul>
-        <li v-for="(ingredient, i) in item.ingredients" :key="i">
-          {{ ingredient }}
+        <li v-for="(ingredient, i) in item.shopping_list" :key="i">
+          <label>
+                  <input type="checkbox" v-model="ingredient.checked" @change="toggleIngredient(item,ingredient)"/>
+                  {{ ingredient.name }}
+          </label>
         </li>
       </ul>
-      <!-- <button @click="deleteIngredient(index)">Delete</button> -->
+      <button @click="deleteIngredient(index)">Delete</button>
       </div>
     </div>
     </div>
@@ -47,7 +50,7 @@ export default {
 
       // Make an Axios DELETE request to remove the item
       axios
-        .delete(`https://recipefinderone.onrender.com/recipe/api/del-shoping/${itemToRemove.id}/`, {
+        .delete(`http://127.0.0.1:8000/recipe/api/del-shoping/${itemToRemove.id}/`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -68,7 +71,7 @@ export default {
         let token=localStorage.getItem('token')
         token?token:''
       try {
-        const response = await axios.get("https://recipefinderone.onrender.com/recipe/api/get-shoping/",{
+        const response = await axios.get("http://127.0.0.1:8000/recipe/api/get-shoping/",{
             headers: {
              Authorization: `Bearer ${token}`,
            },
@@ -83,6 +86,20 @@ export default {
         console.error("Error fetching ingredients:", error);
       }
     },
+     async toggleIngredient(item,ingredient) {
+      let token = localStorage.getItem("token") || "";
+      const encodedIngredientName = encodeURIComponent(ingredient.name);
+      print(encodedIngredientName)
+      try {
+        // Send a PATCH request to update the checked status of the ingredient
+        await axios.patch(`http://127.0.0.1:8000/recipe/api/update-shoping/${item.id}/${encodedIngredientName}`,null,{
+          headers: {
+             Authorization: `Bearer ${token}`,
+           },
+        });
+      } catch (error) {
+        console.error("Error updating ingredient status:", error);
+      }},
   },
   mounted() {
     // Fetch ingredients when the component is mounted

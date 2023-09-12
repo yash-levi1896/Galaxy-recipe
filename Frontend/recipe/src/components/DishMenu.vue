@@ -77,6 +77,7 @@ export default {
    watch: {
     selectedDiet: 'fetchRecipes',
   },
+  
 };
 </script>
 

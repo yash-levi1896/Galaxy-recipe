@@ -45,7 +45,7 @@ export default {
       token?token:''
 
       axios
-        .get('https://recipefinderone.onrender.com/recipe/api/get-favorite/',{
+        .get('http://127.0.0.1:8000/recipe/api/get-favorite/',{
             headers: {
              Authorization: `Bearer ${token}`,
            },
@@ -66,7 +66,7 @@ export default {
         token?token:''
 
         axios
-        .post(`https://recipefinderone.onrender.com/recipe/api/add-shoping/${itemToAdd.id}/`,null,{
+        .post(`http://127.0.0.1:8000/recipe/api/add-shoping/${itemToAdd.id}/`,null,{
             headers: {
              Authorization: `Bearer ${token}`,
            },

@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <NavbarPage></NavbarPage>
   <div class="recipe-recommendation">
     <h2>Recipe Recommendation</h2>
     <form @submit.prevent="findRecipe">
@@ -25,10 +27,13 @@
             <p>{{ recommendedRecipe[recommendedRecipe.length-1] }}</p>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
 import axios from 'axios'
+import NavbarPage from './NavbarPage.vue'
+
 export default {
     name:'PerRec',
   data() {
@@ -68,6 +73,9 @@ export default {
           console.error('Error finding recipe:', error);
         });
     },
+  },
+  components:{
+    NavbarPage
   },
 };
 </script>
