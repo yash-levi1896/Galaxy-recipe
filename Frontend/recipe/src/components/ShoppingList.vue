@@ -14,17 +14,22 @@
       </div>
       <div v-else>
     <div v-for="(item, index) in ingredients" :key="item.id">
-      <h3>Item {{ index + 1 }}</h3>
-      <ul>
-        <li v-for="(ingredient, i) in item.shopping_list" :key="i">
-          <label>
-                  <input type="checkbox" v-model="ingredient.checked" @change="toggleIngredient(item,ingredient)"/>
-                  {{ ingredient.name }}
-          </label>
-        </li>
-      </ul>
-      <button @click="deleteIngredient(index)">Delete</button>
-      </div>
+  <h3>Item {{ index + 1 }}</h3>
+  <ul>
+    <li v-for="(ingredient, i) in item.shopping_list" :key="i">
+      <label :for="'ingredient-' + index + '-' + i">
+        <input
+          type="checkbox"
+          :id="'ingredient-' + index + '-' + i"
+          v-model="ingredient.checked"
+          @change="toggleIngredient(item, ingredient)"
+        />
+        {{ ingredient.name }}
+      </label>
+    </li>
+  </ul>
+  <button @click="deleteIngredient(index)">Delete</button>
+</div>
     </div>
     </div>
   </div>
@@ -89,7 +94,7 @@ export default {
      async toggleIngredient(item,ingredient) {
       let token = localStorage.getItem("token") || "";
       const encodedIngredientName = encodeURIComponent(ingredient.name);
-      print(encodedIngredientName)
+      
       try {
         // Send a PATCH request to update the checked status of the ingredient
         await axios.patch(`https://recipefinderone.onrender.com/recipe/api/update-shoping/${item.id}/${encodedIngredientName}`,null,{
